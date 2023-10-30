@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CARS</title>
+</head>
+<body>
+    <h1>Создаем модели для авто</h1>
+
+    <form method="post" action="create/">
+        {% csrf_token %}
+        <p>
+            <label>марка авто</label>
+            <input type="text" name="mark">
+        </p>
+        <p>
+            <label>производитель</label>
+            <input type="text" name="manufacturer">
+        </p>
+        <p>
+            <label>год</label>
+            <input type="number" name="year">
+        </p>
+        <p>
+            <label>гос номер</label>
+            <input type="text" name="gos_number">
+        </p>
+        <input type="submit" value="Сохранить">
+    </form>
+    {% if cars.count > 0 %}
+        <h3>База автомобилей</h3>
+        <table>
+            <tr><th>Id</th><th>марка авто</th><th>производитель</th><th>год</th><th>госномер</th></tr>
+            {% for car in cars %}
+            <tr>
+                <th>{{ car.id }}</th>
+                <th>{{ car.mark }}</th>
+                <th>{{ car.manufacturer }}</th>
+                <th>{{ car.gos_number }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
