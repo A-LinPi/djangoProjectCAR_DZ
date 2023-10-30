@@ -33,10 +33,11 @@
             <tr><th>Id</th><th>марка авто</th><th>производитель</th><th>год</th><th>госномер</th></tr>
             {% for car in cars %}
             <tr>
-                <th>{{ car.id }}</th>
-                <th>{{ car.mark }}</th>
-                <th>{{ car.manufacturer }}</th>
-                <th>{{ car.gos_number }}</th>
+                <td>{{ car.id }}</td>
+                <td>{{ car.mark }}</td>
+                <td>{{ car.manufacturer }}</td>
+                <td>{{ car.gos_number }}</td>
+                <td><a href="edit/{{ car.id }}">Изменить</a><a href="delete/{{ car.id }}">Удалить</a></td>
             </tr>
             {% endfor %}
         </table>

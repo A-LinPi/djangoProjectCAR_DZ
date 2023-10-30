@@ -8,3 +8,4 @@ class Cars(models.Model):
     year = models.IntegerField('год')
     gos_number = models.CharField('гос номер', max_length=11)
     objects = models.Manager()
+    DoesNotExist = models.Manager

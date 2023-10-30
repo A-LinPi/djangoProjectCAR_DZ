@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT CAR</title>
+</head>
+<body>
+    <h1>Редактировать данные автомобиля</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label>марка авто</label>
+            <input type="text" name="mark" value={{ car.mark }}>
+        </p>
+        <p>
+            <label>производитель</label>
+            <input type="text" name="manufacturer" value={{ car.manufacturer }}>
+        </p>
+        <p>
+            <label>год</label>
+            <input type="number" name="year" value={{ car.year }}>
+        </p>
+        <p>
+            <label>гос номер</label>
+            <input type="text" name="gos_number" value={{ car.gos_number }}>
+        </p>
+        <input type="submit" value="Сохранить">
+    </form>
+</body>
+</html>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from .models import Cars
 
 
@@ -19,3 +19,28 @@ def create(request):
         new_car.save()
     return HttpResponseRedirect("/")
 
+
+def edit(request, id):
+    try:
+        car = Cars.objects.get(id=id)
+
+        if request.method == "POST":
+            car.mark = request.POST.get("mark")
+            car.manufacturer = request.POST.get("manufacturer")
+            car.year = request.POST.get("year")
+            car.gos_number = request.POST.get("gos_number")
+            car.save()
+            return HttpResponseRedirect("/")
+        else:
+            return render(request, "edit_car.html", {"car": car})
+    except Cars.DoesNotExist:
+        return HttpResponseNotFound("<h2>Автомобиль не найден</h2>")
+
+
+def delete(request, id):
+    try:
+        car = Cars.objects.get(id=id)
+        car.delete()
+        return HttpResponseRedirect("/")
+    except Cars.DoesNotExist:
+        return HttpResponseNotFound("<h2>Автомобиль не найден</h2>")
