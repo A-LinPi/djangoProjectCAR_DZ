@@ -1,32 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>CARS</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    <h1>Создаем модели для авто</h1>
 
+{#    <div class="wrapper">#}
     <form method="post" action="create/">
+        <h2>Добавить авто</h2>
         {% csrf_token %}
-        <p>
-            <label>марка авто</label>
-            <input type="text" name="mark">
-        </p>
-        <p>
-            <label>производитель</label>
-            <input type="text" name="manufacturer">
-        </p>
-        <p>
-            <label>год</label>
-            <input type="number" name="year">
-        </p>
-        <p>
-            <label>гос номер</label>
-            <input type="text" name="gos_number">
-        </p>
-        <input type="submit" value="Сохранить">
+            <label for="mark">марка авто</label>
+            <input id="mark" type="text" name="mark">
+            <label for="manufacturer">производитель</label>
+            <input id="manufacturer" type="text" name="manufacturer">
+            <label for="year">год</label>
+            <input id="year" type="number" name="year">
+            <label for="gos_number" >гос номер</label>
+            <input id="gos_number" type="text" name="gos_number">
+            <input type="submit" value="Сохранить">
     </form>
+{#    </div>#}
+
     {% if cars.count > 0 %}
         <h3>База автомобилей</h3>
         <table>
@@ -36,8 +33,9 @@
                 <td>{{ car.id }}</td>
                 <td>{{ car.mark }}</td>
                 <td>{{ car.manufacturer }}</td>
+                <td>{{ car.year }}</td>
                 <td>{{ car.gos_number }}</td>
-                <td><a href="edit/{{ car.id }}">Изменить</a><a href="delete/{{ car.id }}">Удалить</a></td>
+                <td><a class="edit" href="edit/{{ car.id }}">Изменить</a> | <a class="del" href="delete/{{ car.id }}">Удалить</a></td>
             </tr>
             {% endfor %}
         </table>
